@@ -38,7 +38,7 @@ def figure(type,x,y=None):
 #2 Write a function which takes sets of parameters of two figures and compares their fields. (4p)
 def compare(arg_1,arg_2):
 
-	# if first figure does not comply with the conditions then skip next figure
+	"""if first figure does not comply with the conditions then skip next figure"""
 	try:
 		type1, field1 = figure(*arg_1)
 		type2, field2 = figure(*arg_2)
@@ -59,7 +59,7 @@ def compare(arg_1,arg_2):
 		print("-" * 10)
 
 #3 Test your solutions (2p)
-compare(["triangle",5,2],["rhombus",3,2])
-compare(["triangle",5,2],["hexagon",3,2])
+compare(["triangle",5,222],["rhombus",3,2])
+compare(["triangle",5,2],["hexagon",3,222])
 compare(["triangle",-5,2],["circle",3])
-compare(["rhombus",5,2],["circle",3])
+compare(["rhombus",5,2],["circle",331])

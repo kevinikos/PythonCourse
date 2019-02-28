@@ -60,7 +60,7 @@ def task4():
 	print("#4 Add rounding for the above x/y operation. Round to 2 decimal points. Hint: look up in Google 'python limiting number of decimals'. (1p)")
 	x = float(input("x: "))
 	y = float(input("y: "))
-	print(x, "/", y, "=", x / y)
+	print(x, "/", y, "=", round(x / y, 2))
 	print("X is divisible by Y") if x % y == 0 else print("X is not divisible by Y")
 
 def main():
@@ -71,5 +71,6 @@ def main():
 	# task1(x="dog", y=3) # example 3
 	task2()
 	task3()
+	task4()
 
 main()

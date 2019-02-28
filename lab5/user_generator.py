@@ -1,8 +1,6 @@
-# 2 Use https://randomuser.me API to download a random user data.
-# Create and store 100 random users with ids, username, name (first + last name) using this API (2p)
+from lab5.get_orderbook import bitbayOrders
 import requests
 import random
-import json
 
 
 # def userGenerator(**kwargs):
@@ -34,12 +32,18 @@ def userGenerator(number_of_users):
 
 def pairUsers(users):
 	user_1, user_2 = random.sample(users, 2)
-	return user_1, user_2
+	return user_1["first_name"], user_2["first_name"]
+
+
+def tradeCrypto(user_1, user_2, ask_price, ask_amount):
+	print(user_1, "exchanged", ask_amount, "ETH with", user_2, "for", ask_price, "BTC")
 
 
 def main():
 	users = userGenerator(number_of_users=50)
-	pairUsers(users)
+	user_1, user_2 = pairUsers(users)
+	bid_price, bid_amount, ask_price, ask_amount = bitbayOrders("ethbtc")
+	tradeCrypto(user_1, user_2, ask_price, ask_amount)
 
 
 main()

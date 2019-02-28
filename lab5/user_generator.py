@@ -6,16 +6,6 @@ import random
 import time
 
 
-# def userGenerator(**kwargs):
-# 	created_users.append(kwargs)
-# 	return created_users
-#
-#
-# def main():
-# 	for user in range(0, number_of_users):
-# 		userGenerator(id=users[user]["id"]["value"], first_name=users[user]["name"]["first"], last_name=users[user]["name"]["last"], username=users[user]["login"]["username"])
-
-
 def userGenerator(number_of_users):
 	created_users = []
 	response = requests.get("https://randomuser.me/api/?results=" + str(number_of_users))

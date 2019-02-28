@@ -1,6 +1,9 @@
-from lab5.get_orderbook import bitbayOrders
+from lab5.get_orderbook import bitbayOrders, binanceOrders
+from cs50 import get_string
+import lab5.get_ticker
 import requests
 import random
+import time
 
 
 # def userGenerator(**kwargs):
@@ -35,15 +38,33 @@ def pairUsers(users):
 	return user_1["first_name"], user_2["first_name"]
 
 
-def tradeCrypto(user_1, user_2, ask_price, ask_amount):
-	print(user_1, "exchanged", ask_amount, "ETH with", user_2, "for", ask_price, "BTC")
+def tradeCrypto(single_symbol, user_1, user_2, ask_course_bit, ask_course_bin):
+	crypto_amount = random.uniform(0.5, 1.9)
+	ask_price_bit = ask_course_bit * crypto_amount
+	ask_course_bin = ask_course_bin * crypto_amount
+	single_symbol = single_symbol.replace("BTC", "")
+	print(user_1, "exchanged", round(crypto_amount, 6), single_symbol, "with", user_2, "for", round(ask_course_bin, 6), "BTC")
 
 
 def main():
-	users = userGenerator(number_of_users=50)
-	user_1, user_2 = pairUsers(users)
-	bid_price, bid_amount, ask_price, ask_amount = bitbayOrders("ethbtc")
-	tradeCrypto(user_1, user_2, ask_price, ask_amount)
+	binance_symbols = lab5.get_ticker.binanceSymbols()
+	bitbay_symbols = lab5.get_ticker.bitbaySymbols()
+	linked_symbols = lab5.get_ticker.linkedSymbols(binance_symbols, bitbay_symbols)
+	for symbol in linked_symbols:
+		print(symbol)
+	print("-" * 10)
+	symbol = get_string("cryptocurrency pair: ").upper()
+	print("-" * 10)
+	if symbol in linked_symbols:
+		users = userGenerator(number_of_users=100)
+		transaction_limit = 10
+		while transaction_limit != 0:
+			user_1, user_2 = pairUsers(users)
+			bid_course_bit, ask_course_bit = bitbayOrders(symbol)
+			bid_course_bin, ask_course_bin = binanceOrders(symbol)
+			tradeCrypto(symbol, user_1, user_2, ask_course_bit, ask_course_bin)
+			transaction_limit -= 1
+			time.sleep(1.5)
 
 
 main()

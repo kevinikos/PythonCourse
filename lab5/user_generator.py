@@ -1,6 +1,6 @@
+from lab5.get_ticker import bitbaySymbols, binanceSymbols, linkedSymbols
 from lab5.get_orderbook import bitbayOrders, binanceOrders
 from cs50 import get_string
-import lab5.get_ticker
 import requests
 import random
 import time
@@ -55,9 +55,9 @@ def userBalances(users, user_1, user_2, user_1_amount, user_2_amount, symbol):
 
 
 def main():
-	binance_symbols = lab5.get_ticker.binanceSymbols()
-	bitbay_symbols = lab5.get_ticker.bitbaySymbols()
-	linked_symbols = lab5.get_ticker.linkedSymbols(binance_symbols, bitbay_symbols)
+	binance_symbols = binanceSymbols()
+	bitbay_symbols = bitbaySymbols()
+	linked_symbols = linkedSymbols(binance_symbols, bitbay_symbols)
 	print("available currency pairs:")
 	for symbol in linked_symbols:
 		print(symbol)

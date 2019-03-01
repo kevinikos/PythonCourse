@@ -15,7 +15,6 @@ def userGenerator(number_of_users, symbol):
 	for each_user in range(0, number_of_users):
 		user = {}
 		user["id"] = each_user
-		# user["id"] = users[each_user]["id"]["value"]
 		user["first_name"] = users[each_user]["name"]["first"]
 		user["last_name"] = users[each_user]["name"]["last"]
 		user["username"] = users[each_user]["login"]["username"]
@@ -23,7 +22,6 @@ def userGenerator(number_of_users, symbol):
 		user["wallet"]["BTC"] = 10
 		user["wallet"][symbol] = 10
 		created_users.append(user)
-	# print(json.dumps(created_users, indent=2, sort_keys=False))
 	return created_users
 
 
@@ -32,12 +30,10 @@ def pairUsers(users):
 	return user_1["username"], user_2["username"]
 
 
-def tradeCrypto(symbol, user_1, user_2, course_binance):
-	"""currently binance on fire"""
+def tradeCrypto(part_of_symbol, user_1, user_2, course_binance):
 	user_1_amount = random.uniform(0.5, 1.9)
 	user_2_amount = course_binance * user_1_amount
-	single_symbol = symbol.replace("BTC", "")
-	print(user_1, "exchanged", round(user_1_amount, 6), single_symbol, "with", user_2, "for", round(user_2_amount, 6), "BTC")
+	print(user_1, "exchanged", round(user_1_amount, 6), part_of_symbol, "with", user_2, "for", round(user_2_amount, 6), "BTC")
 	return user_1, user_2, user_1_amount, user_2_amount
 
 
@@ -63,15 +59,15 @@ def main():
 	print("-" * 10)
 	part_of_symbol = symbol.replace("BTC", "")
 	if symbol in linked_symbols:
-		users = userGenerator(number_of_users=5, symbol=part_of_symbol)
-		transaction_limit = 2
+		users = userGenerator(number_of_users=10, symbol=part_of_symbol)
+		transaction_limit = 10
 		while transaction_limit != 0:
 			user_1, user_2 = pairUsers(users)
 			course_binance = binanceOrders(symbol)
-			user_1, user_2, user_1_amount, user_2_amount = tradeCrypto(symbol, user_1, user_2, course_binance)
+			user_1, user_2, user_1_amount, user_2_amount = tradeCrypto(part_of_symbol, user_1, user_2, course_binance)
 			userBalances(users, user_1, user_2, user_1_amount, user_2_amount, part_of_symbol)
 			transaction_limit -= 1
-			time.sleep(1.5)
+			time.sleep(1)
 		print("-" * 10)
 		print(json.dumps(users, indent=2, sort_keys=False))
 

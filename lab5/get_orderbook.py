@@ -11,7 +11,7 @@ def bitbayOrders(symbol):
 	bid_course = upper_bid[0]
 	ask_course = upper_ask[0]
 	# print("upper bid course:", bid_course, "| upper ask course:", ask_course)
-	return bid_course, ask_course
+	return ask_course
 
 
 def binanceOrders(symbol):
@@ -24,7 +24,7 @@ def binanceOrders(symbol):
 	bid_course = float(upper_bid[0])
 	ask_course = float(upper_ask[0])
 	# print("upper bid course:", bid_course, "| upper ask course:", ask_course)
-	return bid_course, ask_course
+	return ask_course
 
 
 if __name__ == '__main__':

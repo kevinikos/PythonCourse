@@ -14,7 +14,7 @@ def userGenerator(number_of_users, symbol):
 	users = data["results"]
 	for each_user in range(0, number_of_users):
 		user = {}
-		user["id"] = each_user
+		user["id"] = each_user + 1  # in order to start from id 1
 		user["first_name"] = users[each_user]["name"]["first"]
 		user["last_name"] = users[each_user]["name"]["last"]
 		user["username"] = users[each_user]["login"]["username"]
@@ -22,6 +22,7 @@ def userGenerator(number_of_users, symbol):
 		user["wallet"]["BTC"] = 10
 		user["wallet"][symbol] = 10
 		created_users.append(user)
+	print(json.dumps(created_users, indent=2, sort_keys=False))
 	return created_users
 
 
@@ -72,4 +73,5 @@ def main():
 		print(json.dumps(users, indent=2, sort_keys=False))
 
 
-main()
+if __name__ == '__main__':
+	userGenerator(number_of_users=10, symbol="ETH")

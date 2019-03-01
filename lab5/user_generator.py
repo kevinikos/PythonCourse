@@ -50,8 +50,6 @@ def userBalances(users, user_1, user_2, user_1_amount, user_2_amount):
 		elif user_2 == user_match:
 			users[user_id]["wallet"]["eth"] += user_1_amount
 			users[user_id]["wallet"]["btc"] -= user_2_amount
-
-	print(json.dumps(users, indent=2, sort_keys=False))
 	return users
 
 
@@ -65,16 +63,17 @@ def main():
 	symbol = get_string("cryptocurrency pair: ").upper()
 	print("-" * 10)
 	if symbol in linked_symbols:
-		users = userGenerator(number_of_users=2)
-		transaction_limit = 10
+		users = userGenerator(number_of_users=5)
+		transaction_limit = 2
 		while transaction_limit != 0:
 			user_1, user_2 = pairUsers(users)
-			# course_bitbay = bitbayOrders(symbol)
 			course_binance = binanceOrders(symbol)
 			user_1, user_2, user_1_amount, user_2_amount = tradeCrypto(symbol, user_1, user_2, course_binance)
 			userBalances(users, user_1, user_2, user_1_amount, user_2_amount)
 			transaction_limit -= 1
 			time.sleep(1.5)
+		print("-" * 10)
+		print(json.dumps(users, indent=2, sort_keys=False))
 
 
 main()

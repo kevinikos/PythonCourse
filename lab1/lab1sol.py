@@ -44,34 +44,22 @@ def randomX(limit):
 	return x
 
 def findMin(x):
+	# x = [1,2,3,1,1,1]
 	print(x)
-	return x.index(min(x)), min(x)
+	index_list = []
+	min_value = min(x)
+	min_value_index = x.index(min_value)
+	index_list.append(min_value_index)
+	for i in range(0,len(x)):
+		if (min_value == x[i]) and (min_value_index != i):
+			index_list.append(i)
+	return index_list, min_value
 
 print("#3 write a function which takes an array of numbers as an input and finds the lowest value. Return the index of that element and its value (2p)")
 index, value = findMin(x=randomX(limit=20))
 print("index:", index)
-print("value:", value, "\n")
+print("value:", value)
 
-#4 looking at lab1-input and lab1-plot files create your own python script that takes a number and returns any chart of a given length.
-#the length of a chart is the input to your script. The output is a plot (it doesn't matter if it's a y=x or y=e^x+2x or y=|x| function, use your imagination)
-#test your solution properly. Look how it behaves given different input values. (2p)
-
-def takeValue(limit):
-	x = randomX(limit)
-	plotValues = []
-	for value in x:
-		y = math.exp(value)+2*value
-		plotValues.append(y)
-	return plotValues
-
-print("""#4 looking at lab1-input and lab1-plot files create your own python script that takes a number and returns any chart of a given length.
-#the length of a chart is the input to your script. The output is a plot (it doesn't matter if it's a y=x or y=e^x+2x or y=|x| function, use your imagination)
-#test your solution properly. Look how it behaves given different input values. (2p)""")
-x = takeValue(limit=1000)
-print("plot values:")
-print(x)
-plot(x)
-show()
 
 
 

@@ -1,4 +1,4 @@
-from matplotlib.pyplot import *
+from cs50 import get_int
 import random
 import math
 
@@ -26,14 +26,17 @@ print(calculateFunc(),"\n")
 
 def factorial(x):
 	fact = 1
-	for i in range(1,x):
-		fact *= x
-		x -= 1
-	return fact
+	if x > 0:
+		for i in range(1,x):
+			fact *= x
+			x -= 1
+		return fact
+	else:
+		print("given value must be greater than 0")
 
 print("#2 ask the user for a number and print its factorial (2p)")
 # print("factorial:", factorial(x=5),"\n")
-print("factorial:", factorial(x=int(input("value: "))),"\n")
+print("factorial:", factorial(x=get_int("value: ")),"\n")
 
 #3 write a function which takes an array of numbers as an input and finds the lowest value. Return the index of that element and its value (2p)
 

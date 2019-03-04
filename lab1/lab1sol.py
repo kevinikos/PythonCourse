@@ -62,15 +62,3 @@ print("#3 write a function which takes an array of numbers as an input and finds
 index, value = findMin(x=randomX(limit=20))
 print("index:", index)
 print("value:", value)
-
-
-
-
-
-
-
-
-
-
-
-

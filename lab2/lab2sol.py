@@ -52,17 +52,27 @@ def task3():
 	print("#3 check if X is divisible by Y (do it in one line of code), print 'X is divisible by Y' or 'X is not divisible by Y'. (1p)")
 	x = get_float("x: ")
 	y = get_float("y: ")
-	print("X:", x, "Y:", y)
-	[print("X is divisible by Y\n") if x % y == 0 else print("X is not divisible by Y\n")] if x != 0 and y != 0 else print("x and y must be different than 0")
+	try:
+		divisible = x % y == 0
+		not_null = x != 0 and y != 0
+		print("X:", x, "Y:", y)
+		[print("X is divisible by Y\n") if divisible else print("X is not divisible by Y\n")] if not_null else print("x and y must be different than 0")
+	except ZeroDivisionError:
+		print("can't divide by 0")
 
 #4 Add rounding for the above x/y operation. Round to 2 decimal points. Hint: look up in Google "python limiting number of decimals". (1p)
 def task4():
 	print("#4 Add rounding for the above x/y operation. Round to 2 decimal points. Hint: look up in Google 'python limiting number of decimals'. (1p)")
 	x = get_float("x: ")
 	y = get_float("y: ")
-	print("%.2f" % (x/y))
-	print(x, "/", y, "=", round(x / y, 2))
-	[print("X is divisible by Y\n") if x % y == 0 else print("X is not divisible by Y\n")] if x != 0 and y != 0 else print("x and y must be different than 0")
+	try:
+		divisible = x % y == 0
+		not_null = x != 0 and y != 0
+		print("%.2f" % (x / y))
+		print(x, "/", y, "=", round(x / y, 2))
+		[print("X is divisible by Y\n") if divisible else print("X is not divisible by Y\n")] if not_null else print("x and y must be different than 0")
+	except ZeroDivisionError:
+		print("can't divide by 0")
 
 def main():
 	x, y = task0()

@@ -37,7 +37,7 @@ def figure(type, x, y=None):
 
 
 # 2 Write a function which takes sets of parameters of two figures and compares their fields. (4p)
-def compare(arg_1, arg_2):
+def compare(arg_1=None, arg_2=None):
 	"""if first figure does not comply with the conditions then skip next figure"""
 	try:
 		type1, field1 = figure(*arg_1)
@@ -54,7 +54,8 @@ def compare(arg_1, arg_2):
 			print(type2, "has larger field than", type1)
 			print("-" * 10)
 
-	except TypeError:
+	except TypeError as e:
+		print(e)
 		print("can't compare if one of given values is less than 0 (None) or it's another type of figure")
 		print("-" * 10)
 
@@ -64,3 +65,4 @@ compare(["triangle", 5, 222], ["rhombus", 3, 2])
 compare(["triangle", 5, 2], ["hexagon", 3, 222])
 compare(["triangle", -5, 2], ["circle", 3])
 compare(["rhombus", 5, 2], ["circle", 331])
+compare(["rhombus", 5, 2])
